@@ -22,12 +22,24 @@ public class PlayerController : MonoBehaviour
 
     SpriteRenderer sprite;
 
+    //Audio BGM onStartup
+
+    public GameObject backgroundMusicObject;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+
+        AudioSource audioSource = backgroundMusicObject.GetComponent<AudioSource>();
+
+        // Check if AudioSource exists and play the music
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
     }
 
     // Update is called once per frame
