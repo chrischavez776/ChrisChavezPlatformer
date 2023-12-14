@@ -14,6 +14,13 @@ public class PlayerController : MonoBehaviour
     public float jumpForce; //the force that will be added to the vertical component of player's velocity
     public float speed;
 
+    //Melee Attack Variables
+    public bool isAttacking = false;
+    public float attackDuration = 0.5f; // Adjust as needed
+    public float attackCooldown = 1.0f; // Adjust as needed
+    private float attackTimer = 0.0f;
+
+
 
     //Ground Check Variables
     public LayerMask groundLayer;//layer information
@@ -74,6 +81,28 @@ public class PlayerController : MonoBehaviour
         {
             moving = false;
         }
+
+        //Attack Function
+        if (Input.GetKeyDown("f") && !isAttacking){ 
+            isAttacking = true;
+            attackTimer = 0.0f;
+            // Add animation or attack behavior here
+            // For now, let's simulate an attack by logging a message
+            Debug.Log("Melee Attack!");
+            
+        }
+
+        if (isAttacking){
+            attackTimer += Time.deltaTime;
+            
+            if (attackTimer >= attackDuration){
+                isAttacking = false;
+                }
+            }
+        if (!isAttacking && attackTimer >= attackCooldown){
+            // Reset attack timer
+            attackTimer = 0.0f;
+            }
 
         anim.SetBool("isMoving", moving);
         transform.position = newPosition; 
