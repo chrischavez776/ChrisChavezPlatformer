@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - end
+  - block
   layers:
   - Default
   - TransparentFX
